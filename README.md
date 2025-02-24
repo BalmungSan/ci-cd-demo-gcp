@@ -1,2 +1,3 @@
-# ci-cd-demo-gcp
-Demo showing how to use GithubActions to configure a CI / CD pipeline deploying to GCP
+# CI / CD demo for GCP
+
+Demo showing how to use **Github Actions** to configure a CI / CD pipeline deploying a **Dockerized** **Scala** app to **GCP** using **Terraform**.
