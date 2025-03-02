@@ -7,7 +7,7 @@ object Main extends IOApp.Simple:
     for
       config <- config.load.toResource
       skunkSession <- repository.SkunkSession.make(config = config.db)
-      todoRepository <- repository.TodoRepository.make(session = skunkSession)
+      todoRepository = repository.TodoRepository.make(session = skunkSession)
       todoService = service.TodoService.make(repository = todoRepository)
       server <- server.make(
         config = config.server,

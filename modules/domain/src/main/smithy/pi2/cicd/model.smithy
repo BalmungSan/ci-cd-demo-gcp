@@ -4,7 +4,6 @@ namespace co.edu.eafit.dis.pi2.cicd.domain.model
 
 use alloy#UUID
 use smithy4s.meta#adt
-use smithy4s.meta#vector
 
 @length(min: 1)
 string NonEmptyString
@@ -23,7 +22,6 @@ structure Todo with [HasReminder] {
     status: TodoStatus
 }
 
-@vector
 list Todos {
     member: Todo
 }
