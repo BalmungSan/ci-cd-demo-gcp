@@ -8,6 +8,7 @@ val http4sVersion = "0.23.30"
 val cirisVersion = "3.7.0"
 val skunkVersion = "1.0.0-M10"
 val dumboVersion = "0.5.5"
+val testcontainersVersion = "0.41.8"
 val weaverVersion = "0.8.4"
 
 // Global settings.
@@ -68,7 +69,9 @@ lazy val tests =
     .settings(
       libraryDependencies ++= Seq(
         "com.disneystreaming" %% "weaver-cats" % weaverVersion,
-        "com.disneystreaming" %% "weaver-scalacheck" % weaverVersion
+        "com.disneystreaming" %% "weaver-scalacheck" % weaverVersion,
+        "com.dimafeng" %% "testcontainers-scala-core" % testcontainersVersion,
+        "com.dimafeng" %% "testcontainers-scala-postgresql" % testcontainersVersion
       ).map(_ % Test),
       testFrameworks += new TestFramework("weaver.framework.CatsEffect"),
       Test / fork := true
