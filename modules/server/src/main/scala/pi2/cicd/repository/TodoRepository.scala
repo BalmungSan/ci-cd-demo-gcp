@@ -21,7 +21,7 @@ object TodoRepository:
     timestamptz.imap(_.toInstant)(_.atOffset(ZoneOffset.UTC))
 
   private val todoData: Codec[TodoData] =
-    (uuid *: varchar *: instant *: instant.opt).to[TodoData]
+    (uuid *: text *: instant *: instant.opt).to[TodoData]
 
   def make(
       session: Session[IO]
