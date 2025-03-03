@@ -5,8 +5,7 @@ import cats.effect.IO
 import cats.syntax.all.*
 import ciris.env
 import ciris.http4s.given
-import com.comcast.ip4s.Host
-import com.comcast.ip4s.Port
+import com.comcast.ip4s.{Host, Port}
 
 final case class TodoAppConfig(
     server: ServerConfig,

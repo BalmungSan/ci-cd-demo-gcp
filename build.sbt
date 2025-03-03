@@ -6,7 +6,8 @@ val catsEffectVersion = "3.5.7"
 val fs2Version = "3.11.0"
 val http4sVersion = "0.23.30"
 val cirisVersion = "3.7.0"
-val skunkVersion = "1.1.0-M3"
+val skunkVersion = "1.0.0-M10"
+val dumboVersion = "0.5.5"
 
 // Global settings.
 ThisBuild / scalaVersion := "3.3.5"
@@ -52,6 +53,7 @@ lazy val server =
         "is.cir" %% "ciris" % cirisVersion,
         "is.cir" %% "ciris-http4s" % cirisVersion,
         "org.tpolecat" %% "skunk-core" % skunkVersion,
+        "dev.rolang" %% "dumbo" % dumboVersion,
         "org.http4s" %% "http4s-server" % http4sVersion,
         "org.http4s" %% "http4s-ember-server" % http4sVersion
       )
