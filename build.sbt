@@ -71,7 +71,9 @@ lazy val tests =
         "com.disneystreaming" %% "weaver-cats" % weaverVersion,
         "com.disneystreaming" %% "weaver-scalacheck" % weaverVersion,
         "com.dimafeng" %% "testcontainers-scala-core" % testcontainersVersion,
-        "com.dimafeng" %% "testcontainers-scala-postgresql" % testcontainersVersion
+        "com.dimafeng" %% "testcontainers-scala-postgresql" % testcontainersVersion,
+        "org.http4s" %% "http4s-client" % http4sVersion,
+        "org.http4s" %% "http4s-ember-client" % http4sVersion
       ).map(_ % Test),
       testFrameworks += new TestFramework("weaver.framework.CatsEffect"),
       Test / fork := true
