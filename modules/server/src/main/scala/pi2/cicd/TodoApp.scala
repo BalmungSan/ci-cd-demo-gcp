@@ -13,7 +13,7 @@ object TodoApp:
       skunkSession <- repository.SkunkSession.make(config = config.db)
       _ <- repository.migrations.run(session = skunkSession).toResource
       todoRepository = repository.TodoRepository.make(session = skunkSession)
-      todoService = service.TodoService.make(repository = todoRepository)
+      todoService = service.todo.make(repository = todoRepository)
       server <- server.make(
         config = config.server,
         service = todoService

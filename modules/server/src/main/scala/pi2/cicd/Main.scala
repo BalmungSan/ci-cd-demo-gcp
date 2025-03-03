@@ -10,7 +10,7 @@ object Main extends IOApp.Simple:
           config = todoAppConfig
         )
         .evalTap { server =>
-          IO.println(s"Server started in address: ${server}")
+          IO.println(s"Server started in address: ${server.address}")
         }
         .useForever
     }
