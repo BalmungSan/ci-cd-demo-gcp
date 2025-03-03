@@ -30,7 +30,7 @@ object TodoRepository:
       override def saveTodo(todo: TodoData): IO[Unit] =
         session
           .execute(
-            command = sql"INSERT INTO todos VALUES ${todoData}".command
+            command = sql"INSERT INTO todos VALUES ${todoData.values}".command
           )(
             args = todo
           )
@@ -43,8 +43,8 @@ object TodoRepository:
         session
           .execute(
             command = sql"""UPDATE todos
-                      SET completionTime = ${instant}
-                      WHERE todoId = ${uuid}
+                      SET completion_time = ${instant}
+                      WHERE todo_id = ${uuid}
                    """.command
           )(
             args = (completionTime, todoId)
