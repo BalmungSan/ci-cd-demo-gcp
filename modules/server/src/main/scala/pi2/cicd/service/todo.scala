@@ -2,27 +2,27 @@ package co.edu.eafit.dis.pi2.cicd
 package service
 package todo
 
-import domain.model.{NonEmptyString, Todo, TodoStatus}
-import repository.TodoRepository
-import repository.model.TodoData
+import java.time.Instant
+import java.util.UUID
 
 import cats.effect.IO
 import smithy4s.Timestamp
 
-import java.util.UUID
-import java.time.Instant
+import domain.model.{NonEmptyString, Todo, TodoStatus}
+import repository.TodoRepository
+import repository.model.TodoData
 
 extension (instant: Instant)
   private[todo] def asTimestamp: Timestamp =
     Timestamp.fromEpochMilli(instant.toEpochMilli)
 
 def make(
-    repository: TodoRepository
+  repository: TodoRepository
 ): TodoService[IO] =
   new TodoService[IO]:
     override def addTodo(
-        reminder: NonEmptyString,
-        dueTime: Timestamp
+      reminder: NonEmptyString,
+      dueTime: Timestamp
     ): IO[AddTodoOutput] =
       for
         todoId <- IO.randomUUID
@@ -37,7 +37,7 @@ def make(
       yield AddTodoOutput(todoId)
 
     override def completeTodo(
-        todoId: UUID
+      todoId: UUID
     ): IO[Unit] =
       IO.realTimeInstant.flatMap { now =>
         repository.markTodoAsCompleted(

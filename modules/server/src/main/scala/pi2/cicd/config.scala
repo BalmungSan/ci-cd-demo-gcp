@@ -2,27 +2,28 @@ package co.edu.eafit.dis.pi2.cicd
 package config
 
 import cats.effect.IO
-import cats.syntax.all.*
+import cats.syntax.all._
 import ciris.env
 import ciris.http4s.given
-import com.comcast.ip4s.{Host, Port}
+import com.comcast.ip4s.Host
+import com.comcast.ip4s.Port
 
 final case class TodoAppConfig(
-    server: ServerConfig,
-    db: DBConfig
+  server: ServerConfig,
+  db: DBConfig
 )
 
 final case class ServerConfig(
-    host: Host,
-    port: Port
+  host: Host,
+  port: Port
 )
 
 final case class DBConfig(
-    host: Host,
-    port: Port,
-    database: String,
-    user: String,
-    password: String
+  host: Host,
+  port: Port,
+  database: String,
+  user: String,
+  password: String
 )
 
 private val config =
