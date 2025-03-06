@@ -2,12 +2,13 @@ package co.edu.eafit.dis.pi2.cicd
 package repository
 package migrations
 
-import cats.effect.{IO, Resource}
+import cats.effect.IO
+import cats.effect.Resource
 import dumbo.Dumbo
 import skunk.Session
 
 def run(
-    session: Session[IO]
+  session: Session[IO]
 ): IO[Unit] =
   Dumbo
     .withResourcesIn[IO]("db/migrations")

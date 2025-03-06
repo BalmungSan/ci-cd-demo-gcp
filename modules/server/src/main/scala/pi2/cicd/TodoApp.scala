@@ -1,13 +1,14 @@
 package co.edu.eafit.dis.pi2.cicd
 
-import config.TodoAppConfig
-
-import cats.effect.{IO, Resource}
+import cats.effect.IO
+import cats.effect.Resource
 import org.http4s.server.Server
+
+import config.TodoAppConfig
 
 object TodoApp:
   def make(
-      config: TodoAppConfig
+    config: TodoAppConfig
   ): Resource[IO, Server] =
     for
       skunkSession <- repository.SkunkSession.make(config = config.db)

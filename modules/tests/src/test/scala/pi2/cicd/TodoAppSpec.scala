@@ -1,14 +1,16 @@
 package co.edu.eafit.dis.pi2.cicd
 
-import domain.model.{Todo, TodoStatus}
-import service.TodoService
+import scala.concurrent.duration._
 
-import cats.effect.{IO, Resource}
+import cats.effect.IO
+import cats.effect.Resource
 import smithy4s.Timestamp
 import weaver.IOSuite
-import weaver.scalacheck.{Checkers, CheckConfig}
+import weaver.scalacheck.CheckConfig
+import weaver.scalacheck.Checkers
 
-import scala.concurrent.duration.*
+import domain.model.{Todo, TodoStatus}
+import service.TodoService
 
 object TodoAppSpec extends IOSuite with Checkers:
   override type Res = TodoService[IO]
@@ -29,8 +31,7 @@ object TodoAppSpec extends IOSuite with Checkers:
 
   // Tests.
   test(
-    name =
-      "Inserting a TODO whose due date is after now should list it as PENDING"
+    name = "Inserting a TODO whose due date is after now should list it as PENDING"
   ) { client =>
     IO.realTimeInstant.flatMap { now =>
       forall(
@@ -61,8 +62,7 @@ object TodoAppSpec extends IOSuite with Checkers:
   }
 
   test(
-    name =
-      "Inserting a TODO whose due date is before now should list it as OVERDUE"
+    name = "Inserting a TODO whose due date is before now should list it as OVERDUE"
   ) { client =>
     IO.realTimeInstant.flatMap { now =>
       forall(
@@ -121,15 +121,14 @@ object TodoAppSpec extends IOSuite with Checkers:
           ) && expect.same(
             expected = addTodoData.reminder,
             found = todo.reminder
-          ) && matches(todo.status) {
-            case TodoStatus.Completed(dueTime, completionTime) =>
-              expect.same(
-                expected = addTodoData.dueTime,
-                found = dueTime
-              ) && expect.all(
-                completionTime.epochSecond <= (now.getEpochSecond + 3),
-                completionTime.epochSecond >= (now.getEpochSecond - 3)
-              )
+          ) && matches(todo.status) { case TodoStatus.Completed(dueTime, completionTime) =>
+            expect.same(
+              expected = addTodoData.dueTime,
+              found = dueTime
+            ) && expect.all(
+              completionTime.epochSecond <= (now.getEpochSecond + 3),
+              completionTime.epochSecond >= (now.getEpochSecond - 3)
+            )
           }
         }
       }

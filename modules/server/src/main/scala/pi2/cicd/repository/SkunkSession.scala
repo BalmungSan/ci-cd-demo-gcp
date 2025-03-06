@@ -1,15 +1,16 @@
 package co.edu.eafit.dis.pi2.cicd
 package repository
 
-import config.DBConfig
-
-import cats.effect.{IO, Resource}
-import skunk.Session
+import cats.effect.IO
+import cats.effect.Resource
 import org.typelevel.otel4s.trace.Tracer
+import skunk.Session
+
+import config.DBConfig
 
 object SkunkSession:
   def make(
-      config: DBConfig
+    config: DBConfig
   ): Resource[IO, Session[IO]] =
     given Tracer[IO] = Tracer.noop
     for

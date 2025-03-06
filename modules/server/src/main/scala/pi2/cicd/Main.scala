@@ -1,9 +1,10 @@
 package co.edu.eafit.dis.pi2.cicd
 
-import cats.effect.{IO, IOApp}
+import cats.effect.IO
+import cats.effect.IOApp
 
 object Main extends IOApp.Simple:
-  override final val run: IO[Unit] =
+  override val run: IO[Unit] =
     config.load.flatMap { todoAppConfig =>
       TodoApp
         .make(

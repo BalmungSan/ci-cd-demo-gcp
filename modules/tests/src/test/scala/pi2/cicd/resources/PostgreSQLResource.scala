@@ -1,11 +1,13 @@
 package co.edu.eafit.dis.pi2.cicd
 package resources
 
-import config.DBConfig
-
-import cats.effect.{IO, Resource}
+import cats.effect.IO
+import cats.effect.Resource
+import com.comcast.ip4s.Host
+import com.comcast.ip4s.Port
 import com.dimafeng.testcontainers.PostgreSQLContainer
-import com.comcast.ip4s.{Host, Port}
+
+import config.DBConfig
 
 object PostgreSQLResource:
   private val database = "test_db"

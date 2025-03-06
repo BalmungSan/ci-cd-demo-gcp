@@ -1,15 +1,17 @@
 package co.edu.eafit.dis.pi2.cicd
 package repository
 
-import model.TodoData
+import java.time.Instant
+import java.time.ZoneOffset
+import java.util.UUID
 
 import cats.effect.IO
-import skunk.{Codec, Session}
-import skunk.codec.all.*
+import skunk.Codec
+import skunk.Session
+import skunk.codec.all._
 import skunk.syntax.all.sql
 
-import java.util.UUID
-import java.time.{Instant, ZoneOffset}
+import model.TodoData
 
 trait TodoRepository:
   def saveTodo(todo: TodoData): IO[Unit]
@@ -24,7 +26,7 @@ object TodoRepository:
     (uuid *: text *: instant *: instant.opt).to[TodoData]
 
   def make(
-      session: Session[IO]
+    session: Session[IO]
   ): TodoRepository =
     new TodoRepository:
       override def saveTodo(todo: TodoData): IO[Unit] =
@@ -37,8 +39,8 @@ object TodoRepository:
           .void
 
       override def markTodoAsCompleted(
-          todoId: UUID,
-          completionTime: Instant
+        todoId: UUID,
+        completionTime: Instant
       ): IO[Unit] =
         session
           .execute(

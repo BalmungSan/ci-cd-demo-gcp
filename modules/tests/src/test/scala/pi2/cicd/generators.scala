@@ -1,13 +1,13 @@
 package co.edu.eafit.dis.pi2.cicd
 package generators
 
-import domain.model.NonEmptyString
+import java.time.Instant
 
 import cats.Show
 import org.scalacheck.Gen
 import smithy4s.Timestamp
 
-import java.time.Instant
+import domain.model.NonEmptyString
 
 val reminder: Gen[NonEmptyString] =
   Gen.alphaNumStr.filter(_.nonEmpty).map(NonEmptyString.apply)
@@ -28,8 +28,8 @@ def addTodoData(dueDate: Gen[Timestamp]): Gen[AddTodoData] =
   Gen.zip(reminder, dueDate).map(AddTodoData.apply)
 
 final case class AddTodoData(
-    reminder: NonEmptyString,
-    dueTime: Timestamp
+  reminder: NonEmptyString,
+  dueTime: Timestamp
 )
 
 object AddTodoData:
